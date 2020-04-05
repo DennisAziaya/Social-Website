@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
@@ -6,8 +7,18 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class RegisterForm(forms.Form):
-    user_name = forms.CharField(max_length=200)
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    confirm_password = forms.CharField(widget=forms.PasswordInput)
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label="Password",
+                               widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Confirm Password",
+                                widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+        def cleaned_password2(self):
+            cd = self.cleaned_data
+            if cd['password'] != cd['password2']:
+                raise forms.ValidationError('Passwords dont\'t Match')
+            return cd['password2']

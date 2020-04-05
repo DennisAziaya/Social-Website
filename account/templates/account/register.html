@@ -4,12 +4,16 @@
 
 {% block content %}
 
-    <h1>REGISTER</h1>
+    <h1>Create an Account</h1>
 
-    <form action="{% url 'user_register' %}" method="POST">
+    <p>Please, sign up using the following form:</p>
+
+    <form method="POST">
+
     {% csrf_token %}
-    {{ form.as_p }}
-     <input type="submit" value="Sign Up">
+    {{ user_form.as_p }}
+     <input type="submit" value="Create Account">
+
     </form>
 
 {% endblock %}
