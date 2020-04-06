@@ -25,12 +25,14 @@ SECRET_KEY = 'u23b(g+nxflfe7e+wi=_v42qj17ljke4$k=i9wlj_4-gs(^k_r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jamiiforum.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
+    'social_django',
     'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jamii.apps.JamiiConfig',
+    'django_extensions',
+
 
 ]
 
@@ -144,9 +148,29 @@ LOGOUT_URL = 'logout'
 # Email sending functionality | printing to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# email authentication setting
+# email authentication setting--------------------
 
 AUTHENTICATION_BACKENDS = [
- 'django.contrib.auth.backends.ModelBackend',
- 'account.authentication.EmailAuthBackend',
+     'django.contrib.auth.backends.ModelBackend',
+     'account.authentication.EmailAuthBackend',
 ]
+
+# social authentication - auth with facebook----------
+
+'social_core.backends.facebook.FacebookOAuth2',
+
+SOCIAL_AUTH_FACEBOOK_KEY = 'XXX' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'XXX' # Facebook App Secret
+
+
+# social authentication - auth with twitter----------
+'social_core.backends.twitter.TwitterOAuth',
+SOCIAL_AUTH_TWITTER_KEY = 'XXX' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = 'XXX' # Twitter API Secret
+
+
+# social authentication - auth with google----------
+'social_core.backends.google.GoogleOAuth2',
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'XXX' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'XXX' # Google Consumer Secret
