@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jamii.apps.JamiiConfig',
     'django_extensions',
+    'images.apps.ImagesConfig',
 
 
 ]
