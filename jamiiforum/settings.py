@@ -144,4 +144,9 @@ LOGOUT_URL = 'logout'
 # Email sending functionality | printing to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# email authentication setting
 
+AUTHENTICATION_BACKENDS = [
+ 'django.contrib.auth.backends.ModelBackend',
+ 'account.authentication.EmailAuthBackend',
+]
